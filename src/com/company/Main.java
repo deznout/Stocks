@@ -30,11 +30,14 @@ public class Main {
 
         double p = (r + a) / (a + b);
         C_n = Fn(S_0, -a, b, N, T, p) * pow(1 + r, -N);
-        for (int n = 0; n < N + 1; n++) {
+
+        for (int n = 1; n < N + 1; n++) {
             stocks.betta = betta_increase(B_0, T, r, N, n, -a, b, p, S_0);
             stocks.gamma = gamma_increase(T, r, N, n, -a, b, p, S_0);
-            S_0 += S_0 * (1 + b);
+            S_0 = S_0 * (1 + b);
             //double x = S_0; //gamma(T, r, N, n, a, b, p, S_0) * S_0 + betta(B_0, T, r, N, n, a, b, p, S_0) * B_0;
+            System.out.println("betta_"+n+" = "+stocks.betta+" "+"gamma_"+n+" = "+stocks.gamma);
+
         }
         System.out.println(C_n);
     }
