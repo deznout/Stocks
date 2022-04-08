@@ -7,6 +7,9 @@ import static java.lang.Math.pow;
 
 public class Main {
     public static void main(String[] args) {
+        var w = new MainWindow();
+        w.setVisible(true);
+        
         int N = 2;
         double a = 0.3, b = 0.4, r = 0.1, T = 110, S_0 = 100, B_0 = 10;
         StocksCount stocks = new StocksCount();
