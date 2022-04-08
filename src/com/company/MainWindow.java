@@ -13,13 +13,17 @@ public class MainWindow extends JFrame {
         setMinimumSize(MIN_FRAME_SIZE);
         setTitle("Расчет опционов европейского типа");
         JLabel inf = new JLabel("Введите данные:");
-        JLabel SLabel = new JLabel("S:");
-        JLabel BLabel = new JLabel("B:");
+        JLabel SLabel = new JLabel("S_0:");
+        JLabel BLabel = new JLabel("B_0:");
         JLabel aLabel = new JLabel("a:");
         JLabel bLabel = new JLabel("b:");
         JLabel rLabel = new JLabel("r:");
         JLabel TLabel = new JLabel("T:");
         JLabel NLabel = new JLabel("N:");
+        JLabel nextSLabel = new JLabel("S:");
+        JLabel nextBLabel = new JLabel("B:");
+        JLabel nextSField = new JLabel("0");
+        JLabel nextBField = new JLabel("0");
         JTextField SField = new JTextField(10);
         JTextField BField = new JTextField(10);
         JTextField aField = new JTextField(10);
@@ -58,9 +62,9 @@ public class MainWindow extends JFrame {
                                 .addGap(4)
                                 .addComponent(SField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
-                                .addComponent(CLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nextSLabel, (int) (MIN_SIZE.height * 0.01), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
-                                .addComponent(CField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nextSField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
                         )
                         .addGap(4)
@@ -69,6 +73,10 @@ public class MainWindow extends JFrame {
                                 .addComponent(BLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
                                 .addComponent(BField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(4)
+                                .addComponent(nextBLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(4)
+                                .addComponent(nextBField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
 
                         )
@@ -107,9 +115,6 @@ public class MainWindow extends JFrame {
                                         .addGap(4)
                                         .addComponent(betta, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(4)
-
-//                                .addComponent(capIn, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-//                                .addGap(4)
                         )
                         .addGap(4)
                         .addGroup(gl.createParallelGroup()
@@ -146,11 +151,15 @@ public class MainWindow extends JFrame {
                         )
                         .addGap(4)
                         .addGroup(gl.createParallelGroup()
-                                        .addGap(8)
-                                        .addComponent(capital, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(4)
+                                .addComponent(CField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(4)
+                                .addGap(8)
+                                .addComponent(capital, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(4)
                                 .addComponent(capIn, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4)
+                                .addGap(4)
 
                         )
                         .addGap(4)
@@ -190,6 +199,8 @@ public class MainWindow extends JFrame {
                         .addGap(4)
                         .addComponent(NLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
+                        .addComponent(CLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(4)
                 )
                 .addGap(4)
                 .addGroup(gl.createParallelGroup()
@@ -209,10 +220,14 @@ public class MainWindow extends JFrame {
                         .addGap(4)
                         .addComponent(input, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
+                        .addComponent(CField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(4)
                 )
                 .addGap(4)
                 .addGroup(gl.createParallelGroup()
-                        .addComponent(CLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nextSLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(4)
+                        .addComponent(nextBLabel, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
                         .addComponent(step, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
@@ -234,7 +249,9 @@ public class MainWindow extends JFrame {
                         .addGap(4)
                 ).addGap(4)
                 .addGroup(gl.createParallelGroup()
-                        .addComponent(CField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nextSField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(4)
+                        .addComponent(nextBField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
                         .addComponent(stepField, (int) (MIN_SIZE.height * 0.1), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(4)
