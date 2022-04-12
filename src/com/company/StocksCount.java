@@ -4,35 +4,22 @@ import static java.lang.Math.max;
 import static java.lang.Math.pow;
 
 public class StocksCount {
-    double  betta;
-    double  gamma;
 
-    public static double	gamma_increase(double T, double r, int N, int n, double a, double b, double p, double S)
+    public static double gamma(int n, double S, vars values)
     {
-        double result = pow(1 + r, -(N - n)) *
-                (Fn(S * (1 + b), a, b, n, T, p) - Fn(S * (1 + a), b, a, n, T, p)) / (S * (b - a));
-        return result;
+        vars vars_1 = new vars(values.N - n, values.a, values.b, values.r, values.T);
+        vars vars_2 = new vars(values.N - n, values.b, values.a, values.r, values.T);
+        return pow(1 + values.r, -(values.N - n)) *
+                (Fn(S * (1 + values.b), vars_1) - Fn(S * (1 + values.a), vars_2)) / (S * (values.b - values.a));
     }
 
-    public static double	betta_increase(double B_0, double T, double r, int N, int n, double a, double b, double p, double S)
+    public static double	betta(double B_0, double S, int n, vars values)
     {
-        double result = Fn(S, a, b, n, T, p) / B_0 + pow(1 + r, -(N - n)) *
-                (Fn(S * (1 + b), a, b, n, T, p) - Fn(S * (1 + a) , b, a, n, T, p)) / (B_0 * (b - a));
-        return result;
-    }
-
-    public static double	gamma_reduce(double T, double r, int N, int n, double a, double b, double p, double S)
-    {
-        double result = pow(1 + r, -(N - n)) *
-                (Fn(S, a, b, n, T, p) - Fn(S, b, a, n, T, p)) / (S * (b - a));
-        return result;
-    }
-
-    public static double	betta_reduce(double B_0, double T, double r, int N, int n, double a, double b, double p, double S)
-    {
-        double result = Fn(S, a, b, n, T, p) / B_0 + pow(1 + r, -(N - n)) *
-                (Fn(S, a, b, n, T, p) - Fn(S, b, a, n, T, p)) / (B_0 * (b - a));
-        return result;
+        vars vars_1 = new vars(values.N-(n-1), values.a, values.b, values.r, values.T);
+        vars vars_2 = new vars(values.N - n, values.a, values.b, values.r, values.T);
+        vars vars_3 = new vars(values.N - n, values.b, values.a, values.r, values.T);
+        return Fn(S, vars_1) / B_0 - pow(1 + values.r, -(values.N - n)) *
+                (Fn(S * (1 + values.b), vars_2) - Fn(S * (1 + values.a) , vars_3) ) / (B_0 * (values.b - values.a));
     }
 
     public static int	factorial(int i)
@@ -42,18 +29,17 @@ public class StocksCount {
             return (i * factorial(i - 1));
     }
 
-    public static double Fn(double x, double a, double b, int N, double T, double p)
+    public static double Fn(double x, vars values)
     {
         double sum = 0;
-        double C_n_k = 0;
-        double max_0 = 0;
-        for (int i = 0; i < N + 1; i++)
+        double C_n_k;
+        double max_0;
+        for (int i = 0; i < values.N + 1; i++)
         {
-            max_0 = max(x * pow((1 + b), i) * pow((1 + a), N - i) - T, 0.0);
-            C_n_k = factorial(N)/(factorial(i) * factorial(N - i));
-            sum += max_0 * C_n_k * pow(p, i) * pow(1 - p, N - i);
+            max_0 = max(x * pow((1 + values.b), i) * pow((1 + values.a), values.N - i) - values.T, 0.0);
+            C_n_k = (double) factorial(values.N) / (factorial(i) * factorial(values.N - i));
+            sum += max_0 * C_n_k * pow(values.p, i) * pow(1 - values.p, values.N - i);
         }
         return sum;
     }
-
 }
